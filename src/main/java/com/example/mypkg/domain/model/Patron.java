@@ -27,26 +27,44 @@ public class Patron {
 	@Column(name = "CONTACT_INFORMATION")
 	private String contactInformation;
 
+	/**
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return the contactInformation
+	 */
 	public String getContactInformation() {
 		return contactInformation;
 	}
 
+	/**
+	 * @param contactInformation the contactInformation to set
+	 */
 	public void setContactInformation(String contactInformation) {
 		this.contactInformation = contactInformation;
 	}

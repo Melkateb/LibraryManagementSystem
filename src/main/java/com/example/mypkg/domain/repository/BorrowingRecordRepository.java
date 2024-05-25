@@ -3,7 +3,7 @@
  */
 package com.example.mypkg.domain.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.mypkg.domain.model.BorrowingRecord;
@@ -13,6 +13,6 @@ import com.example.mypkg.domain.model.BorrowingRecord;
  *
  */
 @Repository
-public interface BorrowingRecordRepository  extends JpaRepository<BorrowingRecord, String> {
+public interface BorrowingRecordRepository extends CrudRepository<BorrowingRecord, String> {
 
 }

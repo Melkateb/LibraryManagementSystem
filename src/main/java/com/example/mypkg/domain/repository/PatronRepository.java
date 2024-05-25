@@ -3,7 +3,7 @@
  */
 package com.example.mypkg.domain.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.mypkg.domain.model.Patron;
@@ -13,6 +13,6 @@ import com.example.mypkg.domain.model.Patron;
  *
  */
 @Repository
-public interface PatronRepository  extends JpaRepository<Patron, String> {
+public interface PatronRepository extends CrudRepository<Patron, String> {
 
 }

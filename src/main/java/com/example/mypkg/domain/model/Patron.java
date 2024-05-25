@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
@@ -17,10 +18,11 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "PATRON")
 public class Patron {
-	
+
+	@Id
 	@Column(name = "ID", unique = true)
 	private String id;
-	
+
 	@Column(name = "NAME")
 	private String name;
 
@@ -95,5 +97,5 @@ public class Patron {
 	public String toString() {
 		return "Patron [id=" + id + ", name=" + name + ", contactInformation=" + contactInformation + "]";
 	}
-	
+
 }

@@ -3,10 +3,12 @@
  */
 package com.example.mypkg.domain.model;
 
+import java.sql.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
@@ -18,18 +20,19 @@ import jakarta.persistence.Table;
 @Table(name = "BOOK")
 public class Book {
 
+	@Id
 	@Column(name = "ID", unique = true)
 	private String id;
-	
+
 	@Column(name = "TITLE")
 	private String title;
 
 	@Column(name = "AUTHOR")
 	private String author;
-	
+
 	@Column(name = "PUBLICATION_YEAR")
-	private String publicationYear;
-	
+	private Date publicationYear;
+
 	@Column(name = "ISBN")
 	private String isbn;
 
@@ -78,14 +81,14 @@ public class Book {
 	/**
 	 * @return the publicationYear
 	 */
-	public String getPublicationYear() {
+	public Date getPublicationYear() {
 		return publicationYear;
 	}
 
 	/**
 	 * @param publicationYear the publicationYear to set
 	 */
-	public void setPublicationYear(String publicationYear) {
+	public void setPublicationYear(Date publicationYear) {
 		this.publicationYear = publicationYear;
 	}
 
@@ -130,6 +133,5 @@ public class Book {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
 				+ ", isbn=" + isbn + "]";
 	}
-	
-	
+
 }

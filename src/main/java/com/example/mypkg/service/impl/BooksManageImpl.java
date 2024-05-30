@@ -70,13 +70,13 @@ public class BooksManageImpl implements BooksManage {
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public BookUpdateResponse updateBook(BookUpdateCommand bookUpdateCommand) throws AppException {
+		// TODO handle comming id
+		// TODO handle that book doesn't exists
 		Book book = bookRepository.findById(bookUpdateCommand.getId()).get();
 		book.setTitle(bookUpdateCommand.getBook().getTitle());
 		book.setAuthor(bookUpdateCommand.getBook().getAuthor());
 		book.setPublicationYear(bookUpdateCommand.getBook().getPublicationYear());
 		book.setIsbn(bookUpdateCommand.getBook().getIsbn());
-		// TODO handle comming id
-		// TODO handle that book doesn't exists
 		bookRepository.save(book);
 		return new BookUpdateResponse();
 	}

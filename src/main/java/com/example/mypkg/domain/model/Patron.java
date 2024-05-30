@@ -5,8 +5,11 @@ package com.example.mypkg.domain.model;
 
 import java.util.Objects;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -21,6 +24,8 @@ public class Patron {
 
 	@Id
 	@Column(name = "ID", unique = true)
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	private String id;
 
 	@Column(name = "NAME")

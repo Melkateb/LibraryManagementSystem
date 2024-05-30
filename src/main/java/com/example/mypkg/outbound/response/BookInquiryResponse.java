@@ -6,7 +6,6 @@ package com.example.mypkg.outbound.response;
 import org.springframework.validation.annotation.Validated;
 
 import com.example.mypkg.domain.model.Book;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author MRKAT
@@ -15,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class BookInquiryResponse {
 
-	@JsonProperty("book")
 	private Book book;
 
 	/**

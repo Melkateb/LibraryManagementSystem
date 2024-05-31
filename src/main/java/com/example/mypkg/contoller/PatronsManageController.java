@@ -55,7 +55,7 @@ import com.example.mypkg.service.PatronsManage;
  *
  */
 @RestController
-@RequestMapping("/patrons")
+@RequestMapping("/api/patrons")
 public class PatronsManageController {
 
 	@Autowired

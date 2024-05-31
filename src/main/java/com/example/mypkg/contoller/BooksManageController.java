@@ -55,7 +55,7 @@ import com.example.mypkg.service.BooksManage;
  *
  */
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/books")
 public class BooksManageController {
 
 	@Autowired

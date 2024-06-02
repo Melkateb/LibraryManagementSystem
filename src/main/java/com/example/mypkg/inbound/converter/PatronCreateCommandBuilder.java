@@ -19,7 +19,8 @@ public class PatronCreateCommandBuilder extends ServiceInputBuilder<PatronCreate
 
 	@Override
 	protected PatronCreateCommand transformMessage(PatronCreateResource requestInput) throws ApplicationException {
-		return new PatronCreateCommand(requestInput.getName(), requestInput.getContactInformation());
+		return new PatronCreateCommand(requestInput.getName(), requestInput.getMobile(), requestInput.getAddress(),
+				requestInput.getEmail(), requestInput.getBirthdate());
 	}
 
 }

@@ -34,6 +34,9 @@ public class Book {
 	@JsonProperty("isbn")
 	private String isbn;
 
+	@JsonProperty("isBorrowed")
+	private Boolean isBorrowed;
+
 	/**
 	 * @return the id
 	 */
@@ -105,19 +108,35 @@ public class Book {
 	}
 
 	/**
+	 * @return the isBorrowed
+	 */
+	public Boolean getIsBorrowed() {
+		return isBorrowed;
+	}
+
+	/**
+	 * @param isBorrowed the isBorrowed to set
+	 */
+	public void setIsBorrowed(Boolean isBorrowed) {
+		this.isBorrowed = isBorrowed;
+	}
+
+	/**
 	 * @param id
 	 * @param title
 	 * @param author
 	 * @param publicationYear
 	 * @param isbn
+	 * @param isBorrowed
 	 */
-	public Book(String id, String title, String author, Date publicationYear, String isbn) {
+	public Book(String id, String title, String author, Date publicationYear, String isbn, Boolean isBorrowed) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.author = author;
 		this.publicationYear = publicationYear;
 		this.isbn = isbn;
+		this.isBorrowed = isBorrowed;
 	}
 
 	/**
@@ -130,6 +149,7 @@ public class Book {
 		this.author = book.getAuthor();
 		this.publicationYear = book.getPublicationYear();
 		this.isbn = book.getIsbn();
+		this.isBorrowed = book.getIsBorrowed();
 	}
 
 	/**

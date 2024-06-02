@@ -8,7 +8,10 @@ import java.util.Objects;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.example.mypkg.utils.FlagConverter;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -40,6 +43,10 @@ public class Book {
 
 	@Column(name = "ISBN")
 	private String isbn;
+
+	@Convert(converter = FlagConverter.class)
+	@Column(name = "IS_BORROWED")
+	private Boolean isBorrowed = false;
 
 	/**
 	 * @return the id
@@ -111,13 +118,27 @@ public class Book {
 		this.isbn = isbn;
 	}
 
+	/**
+	 * @return the isBorrowed
+	 */
+	public Boolean getIsBorrowed() {
+		return isBorrowed;
+	}
+
+	/**
+	 * @param isBorrowed the isBorrowed to set
+	 */
+	public void setIsBorrowed(Boolean isBorrowed) {
+		this.isBorrowed = isBorrowed;
+	}
+
 	public Book() {
 		super();
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(author, id, isbn, publicationYear, title);
+		return Objects.hash(author, id, isbn, publicationYear, title, isBorrowed);
 	}
 
 	@Override
@@ -130,13 +151,14 @@ public class Book {
 			return false;
 		Book other = (Book) obj;
 		return Objects.equals(author, other.author) && Objects.equals(id, other.id) && Objects.equals(isbn, other.isbn)
-				&& Objects.equals(publicationYear, other.publicationYear) && Objects.equals(title, other.title);
+				&& Objects.equals(publicationYear, other.publicationYear) && Objects.equals(title, other.title)
+				&& Objects.equals(isBorrowed, other.isBorrowed);
 	}
 
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-				+ ", isbn=" + isbn + "]";
+				+ ", isbn=" + isbn + ", isBorrowed=" + isBorrowed + "]";
 	}
 
 }

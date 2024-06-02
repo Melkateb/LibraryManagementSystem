@@ -3,8 +3,11 @@
  */
 package com.example.mypkg.outbound.response;
 
+import java.util.List;
+
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.model.Book;
 import com.example.mypkg.domain.model.Patron;
 
 /**
@@ -15,6 +18,8 @@ import com.example.mypkg.domain.model.Patron;
 public class PatronInquiryResponse {
 
 	private Patron patron;
+
+	private List<Book> borrowedBooks;
 
 	/**
 	 * @return the patron
@@ -31,11 +36,27 @@ public class PatronInquiryResponse {
 	}
 
 	/**
-	 * @param patron
+	 * @return the borrowedBooks
 	 */
-	public PatronInquiryResponse(Patron patron) {
+	public List<Book> getBorrowedBooks() {
+		return borrowedBooks;
+	}
+
+	/**
+	 * @param borrowedBooks the borrowedBooks to set
+	 */
+	public void setBorrowedBooks(List<Book> borrowedBooks) {
+		this.borrowedBooks = borrowedBooks;
+	}
+
+	/**
+	 * @param patron
+	 * @param borrowedBooks
+	 */
+	public PatronInquiryResponse(Patron patron, List<Book> borrowedBooks) {
 		super();
 		this.patron = patron;
+		this.borrowedBooks = borrowedBooks;
 	}
 
 	/**

@@ -12,7 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mypkg.domain.exceptions.ApplicationException;
+import com.example.mypkg.domain.exceptions.PatronAlreadyExistsException;
+import com.example.mypkg.domain.exceptions.PatronNotFoundException;
+import com.example.mypkg.domain.model.Book;
 import com.example.mypkg.domain.model.Patron;
+import com.example.mypkg.domain.repository.BookRepository;
 import com.example.mypkg.domain.repository.PatronRepository;
 import com.example.mypkg.inbound.command.PatronCreateCommand;
 import com.example.mypkg.inbound.command.PatronInquiryCommand;
@@ -36,6 +40,9 @@ public class PatronsManageImpl implements PatronsManage {
 	@Autowired
 	PatronRepository patronRepository;
 
+	@Autowired
+	BookRepository bookRepository;
+
 	@Override
 	public PatronsListInquiryResponse getAllPatrons(PatronsListInquiryCommand patronsListInquiryCommand)
 			throws ApplicationException {
@@ -47,20 +54,23 @@ public class PatronsManageImpl implements PatronsManage {
 	@Override
 	public PatronInquiryResponse getPatronById(PatronInquiryCommand patronInquiryCommand) throws ApplicationException {
 
-		Optional<Patron> optionalPatron = patronRepository.findById(patronInquiryCommand.getId());
-		if (!optionalPatron.isPresent()) {
-			// TODO throw PatronNotFoundException;
-		}
-		return new PatronInquiryResponse(optionalPatron.get());
+		// Get patron
+		Patron patron = getPatron(patronInquiryCommand.getId());
+
+		// Get borrowed books
+		List<Book> borrowedBooks = bookRepository.getBorrowedBooks(patron.getBorrowedBook());
+
+		return new PatronInquiryResponse(patron, borrowedBooks);
 	}
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public PatronCreateResponse addPatron(PatronCreateCommand patronCreateCommand) throws ApplicationException {
-		// TODO check that patron already exists
-		Patron patron = new Patron();
-		patron.setName(patronCreateCommand.getName());
-		patron.setContactInformation(patronCreateCommand.getContactInformation());
+		// Check that patron already exists
+		validatePatronExistance(patronCreateCommand.getName(), patronCreateCommand.getMobile());
+
+		// Create new patron
+		Patron patron = createPatron(patronCreateCommand);
 		patronRepository.save(patron);
 		return new PatronCreateResponse(patron.getId());
 	}
@@ -68,10 +78,18 @@ public class PatronsManageImpl implements PatronsManage {
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public PatronUpdateResponse updatePatron(PatronUpdateCommand patronUpdateCommand) throws ApplicationException {
-		// TODO handle that patron doesn't exists
-		Patron patron = patronRepository.findById(patronUpdateCommand.getId()).get();
+		// Check that there is no another patron with same name and mobile
+		validatePatronExistance(patronUpdateCommand.getPatron().getName(), patronUpdateCommand.getPatron().getMobile());
+
+		// Check that patron exists
+		Patron patron = getPatron(patronUpdateCommand.getId());
+
+		// Update patron
 		patron.setName(patronUpdateCommand.getPatron().getName());
-		patron.setContactInformation(patronUpdateCommand.getPatron().getContactInformation());
+		patron.setMobile(patronUpdateCommand.getPatron().getMobile());
+		patron.setAddress(patronUpdateCommand.getPatron().getAddress());
+		patron.setEmail(patronUpdateCommand.getPatron().getEmail());
+		patron.setBirthdate(patronUpdateCommand.getPatron().getBirthdate());
 		patronRepository.save(patron);
 		return new PatronUpdateResponse();
 	}
@@ -79,9 +97,37 @@ public class PatronsManageImpl implements PatronsManage {
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public PatronRemoveResponse deletePatron(PatronRemoveCommand patronRemoveCommand) throws ApplicationException {
-		// TODO handle that patron doesn't exists
+		// Check that patron exists
+		getPatron(patronRemoveCommand.getId());
+
+		// Delete patron
 		patronRepository.deleteById(patronRemoveCommand.getId());
 		return new PatronRemoveResponse();
+	}
+
+	private Patron getPatron(String patronId) throws PatronNotFoundException {
+		Optional<Patron> optionalPatron = patronRepository.findById(patronId);
+		if (!optionalPatron.isPresent()) {
+			throw new PatronNotFoundException();
+		}
+		return optionalPatron.get();
+	}
+
+	private void validatePatronExistance(String name, String mobile) throws PatronAlreadyExistsException {
+		Optional<Patron> optionalPatron = patronRepository.findByNameAndMobile(name, mobile);
+		if (optionalPatron.isPresent()) {
+			throw new PatronAlreadyExistsException();
+		}
+	}
+
+	private Patron createPatron(PatronCreateCommand patronCreateCommand) {
+		Patron patron = new Patron();
+		patron.setName(patronCreateCommand.getName());
+		patron.setMobile(patronCreateCommand.getMobile());
+		patron.setAddress(patronCreateCommand.getAddress());
+		patron.setEmail(patronCreateCommand.getEmail());
+		patron.setBirthdate(patronCreateCommand.getBirthdate());
+		return patron;
 	}
 
 }

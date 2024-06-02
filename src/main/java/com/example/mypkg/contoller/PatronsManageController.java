@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.mypkg.builders.ResponseMessage;
-import com.example.mypkg.domain.exceptions.AppException;
+import com.example.mypkg.domain.exceptions.ApplicationException;
 import com.example.mypkg.inbound.command.PatronCreateCommand;
 import com.example.mypkg.inbound.command.PatronInquiryCommand;
 import com.example.mypkg.inbound.command.PatronRemoveCommand;
@@ -92,7 +92,7 @@ public class PatronsManageController {
 	PatronRemoveAPIResponseBuilder patronRemoveAPIResponseBuilder;
 
 	@GetMapping("")
-	private ResponseMessage<PatronsListInquiryAPIResponse> getAllPatrons() throws AppException {
+	private ResponseMessage<PatronsListInquiryAPIResponse> getAllPatrons() throws ApplicationException {
 		PatronsListInquiryCommand patronsListInquiryCommand = patronsListInquiryCommandBuilder
 				.buildServiceInput(new PatronsListInquiryResource());
 		PatronsListInquiryResponse patronsListInquiryResponse = patronsManage.getAllPatrons(patronsListInquiryCommand);
@@ -101,7 +101,7 @@ public class PatronsManageController {
 
 	@GetMapping("/{id}")
 	private ResponseMessage<PatronInquiryAPIResponse> getPatron(@NotBlank @PathVariable("id") String id)
-			throws AppException {
+			throws ApplicationException {
 		PatronInquiryResource patronInquiryResource = new PatronInquiryResource(id);
 		PatronInquiryCommand patronInquiryCommand = patronInquiryCommandBuilder
 				.buildServiceInput(patronInquiryResource);
@@ -111,7 +111,7 @@ public class PatronsManageController {
 
 	@PostMapping("")
 	private ResponseMessage<PatronCreateAPIResponse> addPatron(@Valid @RequestBody PatronCreateResource request)
-			throws AppException {
+			throws ApplicationException {
 		PatronCreateCommand patronCreateCommand = patronCreateCommandBuilder.buildServiceInput(request);
 		PatronCreateResponse patronCreateResponse = patronsManage.addPatron(patronCreateCommand);
 		return patronCreateAPIResponseBuilder.buildServiceOutput(patronCreateResponse);
@@ -119,7 +119,7 @@ public class PatronsManageController {
 
 	@PutMapping("/{id}")
 	private ResponseMessage<PatronUpdateAPIResponse> updatePatronById(@NotBlank @PathVariable("id") String id,
-			@Valid @RequestBody com.example.mypkg.inbound.domain.resources.Patron patron) throws AppException {
+			@Valid @RequestBody com.example.mypkg.inbound.domain.resources.Patron patron) throws ApplicationException {
 		PatronUpdateResource patronUpdateResource = new PatronUpdateResource(id, patron);
 		PatronUpdateCommand patronUpdateCommand = patronUpdateCommandBuilder.buildServiceInput(patronUpdateResource);
 		PatronUpdateResponse patronUpdateResponse = patronsManage.updatePatron(patronUpdateCommand);
@@ -128,7 +128,7 @@ public class PatronsManageController {
 
 	@DeleteMapping("/{id}")
 	private ResponseMessage<PatronRemoveAPIResponse> deletePatron(@NotBlank @PathVariable("id") String id)
-			throws AppException {
+			throws ApplicationException {
 		PatronRemoveResource patronRemoveResource = new PatronRemoveResource(id);
 		PatronRemoveCommand patronRemoveCommand = patronRemoveCommandBuilder.buildServiceInput(patronRemoveResource);
 		PatronRemoveResponse patronRemoveResponse = patronsManage.deletePatron(patronRemoveCommand);

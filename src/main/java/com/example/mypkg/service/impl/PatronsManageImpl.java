@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.mypkg.domain.exceptions.AppException;
+import com.example.mypkg.domain.exceptions.ApplicationException;
 import com.example.mypkg.domain.model.Patron;
 import com.example.mypkg.domain.repository.PatronRepository;
 import com.example.mypkg.inbound.command.PatronCreateCommand;
@@ -38,14 +38,14 @@ public class PatronsManageImpl implements PatronsManage {
 
 	@Override
 	public PatronsListInquiryResponse getAllPatrons(PatronsListInquiryCommand patronsListInquiryCommand)
-			throws AppException {
+			throws ApplicationException {
 		List<Patron> patrons = new ArrayList<Patron>();
 		patronRepository.findAll().forEach(patron -> patrons.add(patron));
 		return new PatronsListInquiryResponse(patrons);
 	}
 
 	@Override
-	public PatronInquiryResponse getPatronById(PatronInquiryCommand patronInquiryCommand) throws AppException {
+	public PatronInquiryResponse getPatronById(PatronInquiryCommand patronInquiryCommand) throws ApplicationException {
 
 		Optional<Patron> optionalPatron = patronRepository.findById(patronInquiryCommand.getId());
 		if (!optionalPatron.isPresent()) {
@@ -56,7 +56,7 @@ public class PatronsManageImpl implements PatronsManage {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public PatronCreateResponse addPatron(PatronCreateCommand patronCreateCommand) throws AppException {
+	public PatronCreateResponse addPatron(PatronCreateCommand patronCreateCommand) throws ApplicationException {
 		// TODO check that patron already exists
 		Patron patron = new Patron();
 		patron.setName(patronCreateCommand.getName());
@@ -67,7 +67,7 @@ public class PatronsManageImpl implements PatronsManage {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public PatronUpdateResponse updatePatron(PatronUpdateCommand patronUpdateCommand) throws AppException {
+	public PatronUpdateResponse updatePatron(PatronUpdateCommand patronUpdateCommand) throws ApplicationException {
 		// TODO handle that patron doesn't exists
 		Patron patron = patronRepository.findById(patronUpdateCommand.getId()).get();
 		patron.setName(patronUpdateCommand.getPatron().getName());
@@ -78,7 +78,7 @@ public class PatronsManageImpl implements PatronsManage {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public PatronRemoveResponse deletePatron(PatronRemoveCommand patronRemoveCommand) throws AppException {
+	public PatronRemoveResponse deletePatron(PatronRemoveCommand patronRemoveCommand) throws ApplicationException {
 		// TODO handle that patron doesn't exists
 		patronRepository.deleteById(patronRemoveCommand.getId());
 		return new PatronRemoveResponse();

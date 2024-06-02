@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.mypkg.domain.exceptions.AppException;
+import com.example.mypkg.domain.exceptions.ApplicationException;
 import com.example.mypkg.domain.exceptions.BookNotFoundException;
 import com.example.mypkg.domain.model.Book;
 import com.example.mypkg.domain.repository.BookRepository;
@@ -38,14 +38,14 @@ public class BooksManageImpl implements BooksManage {
 	BookRepository bookRepository;
 
 	@Override
-	public BooksListInquiryResponse getAllBooks(BooksListInquiryCommand booksListInquiryCommand) throws AppException {
+	public BooksListInquiryResponse getAllBooks(BooksListInquiryCommand booksListInquiryCommand) throws ApplicationException {
 		List<Book> books = new ArrayList<Book>();
 		bookRepository.findAll().forEach(book -> books.add(book));
 		return new BooksListInquiryResponse(books);
 	}
 
 	@Override
-	public BookInquiryResponse getBookById(BookInquiryCommand bookInquiryCommand) throws AppException {
+	public BookInquiryResponse getBookById(BookInquiryCommand bookInquiryCommand) throws ApplicationException {
 		// TODO handle that book doesn't exists
 		Optional<Book> optionalBook = bookRepository.findById(bookInquiryCommand.getId());
 		if (!optionalBook.isPresent()) {
@@ -56,7 +56,7 @@ public class BooksManageImpl implements BooksManage {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public BookCreateResponse addBook(BookCreateCommand bookCreateCommand) throws AppException {
+	public BookCreateResponse addBook(BookCreateCommand bookCreateCommand) throws ApplicationException {
 		// TODO check that book already exists
 		Book book = new Book();
 		book.setTitle(bookCreateCommand.getTitle());
@@ -69,7 +69,7 @@ public class BooksManageImpl implements BooksManage {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public BookUpdateResponse updateBook(BookUpdateCommand bookUpdateCommand) throws AppException {
+	public BookUpdateResponse updateBook(BookUpdateCommand bookUpdateCommand) throws ApplicationException {
 		// TODO handle comming id
 		// TODO handle that book doesn't exists
 		Book book = bookRepository.findById(bookUpdateCommand.getId()).get();
@@ -83,7 +83,7 @@ public class BooksManageImpl implements BooksManage {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public BookRemoveResponse deleteBook(BookRemoveCommand bookRemoveCommand) throws AppException {
+	public BookRemoveResponse deleteBook(BookRemoveCommand bookRemoveCommand) throws ApplicationException {
 		// TODO handle that book doesn't exists
 		bookRepository.deleteById(bookRemoveCommand.getId());
 		return new BookRemoveResponse();

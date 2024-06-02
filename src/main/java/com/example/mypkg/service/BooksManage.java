@@ -5,7 +5,7 @@ package com.example.mypkg.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.mypkg.domain.exceptions.AppException;
+import com.example.mypkg.domain.exceptions.ApplicationException;
 import com.example.mypkg.inbound.command.BookCreateCommand;
 import com.example.mypkg.inbound.command.BookInquiryCommand;
 import com.example.mypkg.inbound.command.BookRemoveCommand;
@@ -24,13 +24,13 @@ import com.example.mypkg.outbound.response.BooksListInquiryResponse;
 @Service
 public interface BooksManage {
 
-	public BooksListInquiryResponse getAllBooks(BooksListInquiryCommand booksListInquiryCommand) throws AppException;
+	public BooksListInquiryResponse getAllBooks(BooksListInquiryCommand booksListInquiryCommand) throws ApplicationException;
 
-	public BookInquiryResponse getBookById(BookInquiryCommand bookInquiryCommand) throws AppException;
+	public BookInquiryResponse getBookById(BookInquiryCommand bookInquiryCommand) throws ApplicationException;
 
-	public BookCreateResponse addBook(BookCreateCommand bookCreateCommand) throws AppException;
+	public BookCreateResponse addBook(BookCreateCommand bookCreateCommand) throws ApplicationException;
 
-	public BookUpdateResponse updateBook(BookUpdateCommand bookUpdateCommand) throws AppException;
+	public BookUpdateResponse updateBook(BookUpdateCommand bookUpdateCommand) throws ApplicationException;
 
-	public BookRemoveResponse deleteBook(BookRemoveCommand bookRemoveCommand) throws AppException;
+	public BookRemoveResponse deleteBook(BookRemoveCommand bookRemoveCommand) throws ApplicationException;
 }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.mypkg.builders.ResponseMessage;
-import com.example.mypkg.domain.exceptions.AppException;
+import com.example.mypkg.domain.exceptions.ApplicationException;
 import com.example.mypkg.inbound.command.BookCreateCommand;
 import com.example.mypkg.inbound.command.BookInquiryCommand;
 import com.example.mypkg.inbound.command.BookRemoveCommand;
@@ -92,7 +92,7 @@ public class BooksManageController {
 	BookRemoveAPIResponseBuilder bookRemoveAPIResponseBuilder;
 
 	@GetMapping("")
-	private ResponseMessage<BooksListInquiryAPIResponse> getAllBook() throws AppException {
+	private ResponseMessage<BooksListInquiryAPIResponse> getAllBook() throws ApplicationException {
 		BooksListInquiryCommand booksListInquiryCommand = booksListInquiryCommandBuilder
 				.buildServiceInput(new BooksListInquiryResource());
 		BooksListInquiryResponse booksListInquiryResponse = booksManage.getAllBooks(booksListInquiryCommand);
@@ -101,7 +101,7 @@ public class BooksManageController {
 
 	@GetMapping("/{id}")
 	private ResponseMessage<BookInquiryAPIResponse> getBook(@NotBlank @PathVariable("id") String id)
-			throws AppException {
+			throws ApplicationException {
 		BookInquiryResource bookInquiryResource = new BookInquiryResource(id);
 		BookInquiryCommand bookInquiryCommand = bookInquiryCommandBuilder.buildServiceInput(bookInquiryResource);
 		BookInquiryResponse bookInquiryResponse = booksManage.getBookById(bookInquiryCommand);
@@ -110,7 +110,7 @@ public class BooksManageController {
 
 	@PostMapping("")
 	private ResponseMessage<BookCreateAPIResponse> addBook(@Valid @RequestBody BookCreateResource request)
-			throws AppException {
+			throws ApplicationException {
 		BookCreateCommand bookCreateCommand = bookCreateCommandBuilder.buildServiceInput(request);
 		BookCreateResponse bookCreateResponse = booksManage.addBook(bookCreateCommand);
 		return bookCreateAPIResponseBuilder.buildServiceOutput(bookCreateResponse);
@@ -118,7 +118,7 @@ public class BooksManageController {
 
 	@PutMapping("/{id}")
 	private ResponseMessage<BookUpdateAPIResponse> updateBookById(@NotBlank @PathVariable("id") String id,
-			@Valid @RequestBody com.example.mypkg.inbound.domain.resources.Book book) throws AppException {
+			@Valid @RequestBody com.example.mypkg.inbound.domain.resources.Book book) throws ApplicationException {
 		BookUpdateResource bookUpdateResource = new BookUpdateResource(id, book);
 		BookUpdateCommand bookUpdateCommand = bookUpdateCommandBuilder.buildServiceInput(bookUpdateResource);
 		BookUpdateResponse bookUpdateResponse = booksManage.updateBook(bookUpdateCommand);
@@ -127,7 +127,7 @@ public class BooksManageController {
 
 	@DeleteMapping("/{id}")
 	private ResponseMessage<BookRemoveAPIResponse> deleteBook(@NotBlank @PathVariable("id") String id)
-			throws AppException {
+			throws ApplicationException {
 		BookRemoveResource bookRemoveResource = new BookRemoveResource(id);
 		BookRemoveCommand bookRemoveCommand = bookRemoveCommandBuilder.buildServiceInput(bookRemoveResource);
 		BookRemoveResponse bookRemoveResponse = booksManage.deleteBook(bookRemoveCommand);

@@ -9,7 +9,6 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.example.mypkg.builders.APIResponseBuilder;
-import com.example.mypkg.domain.exceptions.AppException;
 import com.example.mypkg.outbound.api.response.BooksListInquiryAPIResponse;
 import com.example.mypkg.outbound.domain.resources.Book;
 import com.example.mypkg.outbound.response.BooksListInquiryResponse;
@@ -23,8 +22,7 @@ public class BooksListInquiryAPIResponseBuilder
 		extends APIResponseBuilder<BooksListInquiryResponse, BooksListInquiryAPIResponse> {
 
 	@Override
-	protected BooksListInquiryAPIResponse transformMessage(BooksListInquiryResponse serviceResponse)
-			throws AppException {
+	protected BooksListInquiryAPIResponse transformMessage(BooksListInquiryResponse serviceResponse) {
 		List<Book> books = new ArrayList<Book>();
 		for (com.example.mypkg.domain.model.Book book : serviceResponse.getBooks()) {
 			Book newBook = new Book(book);

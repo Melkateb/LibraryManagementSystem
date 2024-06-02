@@ -9,7 +9,6 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.example.mypkg.builders.APIResponseBuilder;
-import com.example.mypkg.domain.exceptions.AppException;
 import com.example.mypkg.outbound.api.response.PatronsListInquiryAPIResponse;
 import com.example.mypkg.outbound.domain.resources.Patron;
 import com.example.mypkg.outbound.response.PatronsListInquiryResponse;
@@ -23,8 +22,7 @@ public class PatronsListInquiryAPIResponseBuilder
 		extends APIResponseBuilder<PatronsListInquiryResponse, PatronsListInquiryAPIResponse> {
 
 	@Override
-	protected PatronsListInquiryAPIResponse transformMessage(PatronsListInquiryResponse serviceResponse)
-			throws AppException {
+	protected PatronsListInquiryAPIResponse transformMessage(PatronsListInquiryResponse serviceResponse) {
 		List<Patron> patrons = new ArrayList<Patron>();
 		for (com.example.mypkg.domain.model.Patron patron : serviceResponse.getPatrons()) {
 			Patron newPatron = new Patron(patron);

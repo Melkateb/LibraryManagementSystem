@@ -8,7 +8,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.mypkg.domain.exceptions.AppException;
+import com.example.mypkg.domain.exceptions.ApplicationException;
 import com.example.mypkg.domain.model.BorrowingRecord;
 import com.example.mypkg.domain.repository.BorrowingRecordRepository;
 import com.example.mypkg.inbound.command.BorrowingRecordCreateCommand;
@@ -29,7 +29,7 @@ public class BorrowingRecordManageImpl implements BorrowingRecordManage {
 
 	@Override
 	public BorrowingRecordCreateResponse addBorrowingRecord(BorrowingRecordCreateCommand borrowingRecordCreateCommand)
-			throws AppException {
+			throws ApplicationException {
 		// TODO check that book record not found
 		BorrowingRecord borrowingRecord = new BorrowingRecord();
 		borrowingRecord.setBookId(borrowingRecordCreateCommand.getBookId());
@@ -41,7 +41,7 @@ public class BorrowingRecordManageImpl implements BorrowingRecordManage {
 
 	@Override
 	public BorrowingRecordUpdateResponse updateBorrowingRecord(
-			BorrowingRecordUpdateCommand borrowingRecordUpdateCommand) throws AppException {
+			BorrowingRecordUpdateCommand borrowingRecordUpdateCommand) throws ApplicationException {
 		// TODO handle that book record doesn't exists
 		BorrowingRecord borrowingRecord = borrowingRecordRepository.findByBookIdAndPatronId(
 				borrowingRecordUpdateCommand.getBookId(), borrowingRecordUpdateCommand.getPatronId()).get();

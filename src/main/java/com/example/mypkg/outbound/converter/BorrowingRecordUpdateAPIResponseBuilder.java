@@ -6,7 +6,6 @@ package com.example.mypkg.outbound.converter;
 import org.springframework.stereotype.Component;
 
 import com.example.mypkg.builders.APIResponseBuilder;
-import com.example.mypkg.domain.exceptions.AppException;
 import com.example.mypkg.outbound.api.response.BorrowingRecordUpdateAPIResponse;
 import com.example.mypkg.outbound.response.BorrowingRecordUpdateResponse;
 
@@ -19,8 +18,7 @@ public class BorrowingRecordUpdateAPIResponseBuilder
 		extends APIResponseBuilder<BorrowingRecordUpdateResponse, BorrowingRecordUpdateAPIResponse> {
 
 	@Override
-	protected BorrowingRecordUpdateAPIResponse transformMessage(BorrowingRecordUpdateResponse serviceResponse)
-			throws AppException {
+	protected BorrowingRecordUpdateAPIResponse transformMessage(BorrowingRecordUpdateResponse serviceResponse) {
 		return new BorrowingRecordUpdateAPIResponse(serviceResponse.getBorrowingDate(),
 				serviceResponse.getReturnDate());
 	}

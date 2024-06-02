@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.mypkg.builders.ResponseMessage;
-import com.example.mypkg.domain.exceptions.AppException;
+import com.example.mypkg.domain.exceptions.ApplicationException;
 import com.example.mypkg.inbound.command.BorrowingRecordCreateCommand;
 import com.example.mypkg.inbound.command.BorrowingRecordUpdateCommand;
 import com.example.mypkg.inbound.converter.BorrowingRecordCreateCommandBuilder;
@@ -54,7 +54,7 @@ public class BorrowingRecordManageController {
 	@PostMapping("/borrow/{bookId}/patron/{patronId}")
 	private ResponseMessage<BorrowingRecordCreateAPIResponse> createBorrowingRecord(
 			@NotBlank @PathVariable("bookId") String bookId, @NotBlank @PathVariable("patronId") String patronId)
-			throws AppException {
+			throws ApplicationException {
 		BorrowingRecordCreateResource borrowingRecordCreateResource = new BorrowingRecordCreateResource(bookId,
 				patronId);
 		BorrowingRecordCreateCommand borrowingRecordCreateCommand = borrowingRecordCreateCommandBuilder
@@ -67,7 +67,7 @@ public class BorrowingRecordManageController {
 	@PutMapping("/return/{bookId}/patron/{patronId}")
 	private ResponseMessage<BorrowingRecordUpdateAPIResponse> updateBorrowingRecord(
 			@NotBlank @PathVariable("bookId") String bookId, @NotBlank @PathVariable("patronId") String patronId)
-			throws AppException {
+			throws ApplicationException {
 		BorrowingRecordUpdateResource borrowingRecordUpdateResource = new BorrowingRecordUpdateResource(bookId,
 				patronId);
 		BorrowingRecordUpdateCommand borrowingRecordUpdateCommand = borrowingRecordUpdateCommandBuilder

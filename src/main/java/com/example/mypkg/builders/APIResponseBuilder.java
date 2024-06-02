@@ -3,22 +3,26 @@
  */
 package com.example.mypkg.builders;
 
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
 
 /**
  * @author MRKAT
  *
  */
-@Service
+@Data
+@Component
 public abstract class APIResponseBuilder<T, E> {
 
+	@Autowired
 	ResponseBuilder responseBuilder;
 
 	public ResponseMessage<E> buildServiceOutput(T serviceResponse) {
 
 		ResponseMessage<E> resp = responseBuilder.buildResponse(serviceResponse);
 		if (serviceResponse != null && !(serviceResponse.getClass().equals(java.lang.Boolean.class))) {
-
 			resp.setData(transformMessage(serviceResponse));
 		}
 		return resp;
@@ -26,13 +30,5 @@ public abstract class APIResponseBuilder<T, E> {
 	}
 
 	protected abstract E transformMessage(T serviceResponse);
-
-	public ResponseBuilder getResponseBuilder() {
-		return responseBuilder;
-	}
-
-	public void setResponseBuilder(ResponseBuilder responseBuilder) {
-		this.responseBuilder = responseBuilder;
-	}
 
 }

@@ -3,6 +3,7 @@
  */
 package com.example.mypkg.builders;
 
+import com.example.mypkg.model.adapters.ResponseHeader;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -12,11 +13,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "date" })
+@JsonPropertyOrder({ "header", "data" })
 public class ResponseMessage<T> {
 
 	@JsonProperty("data")
 	T data;
+
+	@JsonProperty("header")
+	private ResponseHeader header;
 
 	/**
 	 * @return the data
@@ -30,6 +34,20 @@ public class ResponseMessage<T> {
 	 */
 	public void setData(T data) {
 		this.data = data;
+	}
+
+	/**
+	 * @return the header
+	 */
+	public ResponseHeader getHeader() {
+		return header;
+	}
+
+	/**
+	 * @param header the header to set
+	 */
+	public void setHeader(ResponseHeader header) {
+		this.header = header;
 	}
 
 	/**

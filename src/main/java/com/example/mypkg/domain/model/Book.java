@@ -3,7 +3,7 @@
  */
 package com.example.mypkg.domain.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 import org.hibernate.annotations.GenericGenerator;

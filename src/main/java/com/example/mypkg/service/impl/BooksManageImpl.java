@@ -80,10 +80,22 @@ public class BooksManageImpl implements BooksManage {
 		Book book = getBook(bookUpdateCommand.getId());
 
 		// Update book
-		book.setTitle(bookUpdateCommand.getBook().getTitle());
-		book.setAuthor(bookUpdateCommand.getBook().getAuthor());
-		book.setPublicationYear(bookUpdateCommand.getBook().getPublicationYear());
-		book.setIsbn(bookUpdateCommand.getBook().getIsbn());
+		com.example.mypkg.inbound.domain.resources.Book newBook = bookUpdateCommand.getBook();
+		if (newBook.getTitle() != null && !newBook.getTitle().isEmpty()) {
+			book.setTitle(newBook.getTitle());
+		}
+		if (newBook.getAuthor() != null && !newBook.getAuthor().isEmpty()) {
+			book.setAuthor(newBook.getAuthor());
+		}
+		if (newBook.getPublicationYear() != null) {
+			book.setPublicationYear(newBook.getPublicationYear());
+		}
+		if (newBook.getIsbn() != null && !newBook.getIsbn().isEmpty()) {
+			book.setIsbn(newBook.getIsbn());
+		}
+		if (newBook.getIsBorrowed() != null) {
+			book.setIsBorrowed(newBook.getIsBorrowed());
+		}
 		bookRepository.save(book);
 		return new BookUpdateResponse();
 	}

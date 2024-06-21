@@ -1,11 +1,9 @@
 /**
  * 
  */
-package com.example.mypkg.outbound.api.response;
+package com.example.mypkg.outbound.response;
 
 import org.springframework.validation.annotation.Validated;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -14,10 +12,9 @@ import jakarta.validation.constraints.NotBlank;
  *
  */
 @Validated
-public class BorrowingRecordCreateAPIResponse {
+public class BorrowingRecordCreateResponse {
 
 	@NotBlank
-	@JsonProperty("borrowingRecordId")
 	private String borrowingRecordId;
 
 	/**
@@ -37,7 +34,7 @@ public class BorrowingRecordCreateAPIResponse {
 	/**
 	 * @param borrowingRecordId
 	 */
-	public BorrowingRecordCreateAPIResponse(@NotBlank String borrowingRecordId) {
+	public BorrowingRecordCreateResponse(@NotBlank String borrowingRecordId) {
 		super();
 		this.borrowingRecordId = borrowingRecordId;
 	}
@@ -45,7 +42,7 @@ public class BorrowingRecordCreateAPIResponse {
 	/**
 	 * 
 	 */
-	public BorrowingRecordCreateAPIResponse() {
+	public BorrowingRecordCreateResponse() {
 		super();
 	}
 

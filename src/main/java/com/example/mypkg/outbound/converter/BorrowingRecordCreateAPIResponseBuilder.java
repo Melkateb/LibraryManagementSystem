@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.mypkg.builders.APIResponseBuilder;
 import com.example.mypkg.outbound.api.response.BorrowingRecordCreateAPIResponse;
-import com.example.mypkg.outbound.domain.resources.BorrowingRecordCreateResponse;
+import com.example.mypkg.outbound.response.BorrowingRecordCreateResponse;
 
 /**
  * @author MRKAT
@@ -19,7 +19,7 @@ public class BorrowingRecordCreateAPIResponseBuilder
 
 	@Override
 	protected BorrowingRecordCreateAPIResponse transformMessage(BorrowingRecordCreateResponse serviceResponse) {
-		return new BorrowingRecordCreateAPIResponse();
+		return new BorrowingRecordCreateAPIResponse(serviceResponse.getBorrowingRecordId());
 	}
 
 }

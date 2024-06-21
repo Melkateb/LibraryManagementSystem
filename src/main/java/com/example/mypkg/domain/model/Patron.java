@@ -138,14 +138,14 @@ public class Patron {
 	}
 
 	/**
-	 * @return the borrowedBook
+	 * @return the borrowedBooks
 	 */
-	public Set<String> getBorrowedBook() {
+	public Set<String> getBorrowedBooks() {
 		return borrowedBooks;
 	}
 
 	/**
-	 * @param borrowedBook the borrowedBook to set
+	 * @param borrowedBooks the borrowedBooks to set
 	 */
 	public void setBorrowedBooks(Set<String> borrowedBooks) {
 		this.borrowedBooks = borrowedBooks;

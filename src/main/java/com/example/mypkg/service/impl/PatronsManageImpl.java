@@ -58,7 +58,7 @@ public class PatronsManageImpl implements PatronsManage {
 		Patron patron = getPatron(patronInquiryCommand.getId());
 
 		// Get borrowed books
-		List<Book> borrowedBooks = bookRepository.getBorrowedBooks(patron.getBorrowedBook());
+		List<Book> borrowedBooks = bookRepository.getBorrowedBooks(patron.getBorrowedBooks());
 
 		return new PatronInquiryResponse(patron, borrowedBooks);
 	}
@@ -85,11 +85,22 @@ public class PatronsManageImpl implements PatronsManage {
 		Patron patron = getPatron(patronUpdateCommand.getId());
 
 		// Update patron
-		patron.setName(patronUpdateCommand.getPatron().getName());
-		patron.setMobile(patronUpdateCommand.getPatron().getMobile());
-		patron.setAddress(patronUpdateCommand.getPatron().getAddress());
-		patron.setEmail(patronUpdateCommand.getPatron().getEmail());
-		patron.setBirthdate(patronUpdateCommand.getPatron().getBirthdate());
+		com.example.mypkg.inbound.domain.resources.Patron newPatron = patronUpdateCommand.getPatron();
+		if (newPatron.getName() != null && !newPatron.getName().isEmpty()) {
+			patron.setName(newPatron.getName());
+		}
+		if (newPatron.getMobile() != null && !newPatron.getMobile().isEmpty()) {
+			patron.setMobile(newPatron.getMobile());
+		}
+		if (newPatron.getAddress() != null && !newPatron.getAddress().isEmpty()) {
+			patron.setAddress(newPatron.getAddress());
+		}
+		if (newPatron.getEmail() != null && !newPatron.getEmail().isEmpty()) {
+			patron.setEmail(newPatron.getEmail());
+		}
+		if (newPatron.getBirthdate() != null) {
+			patron.setBirthdate(newPatron.getBirthdate());
+		}
 		patronRepository.save(patron);
 		return new PatronUpdateResponse();
 	}

@@ -24,7 +24,7 @@ import com.example.mypkg.outbound.api.response.BorrowingRecordCreateAPIResponse;
 import com.example.mypkg.outbound.api.response.BorrowingRecordUpdateAPIResponse;
 import com.example.mypkg.outbound.converter.BorrowingRecordCreateAPIResponseBuilder;
 import com.example.mypkg.outbound.converter.BorrowingRecordUpdateAPIResponseBuilder;
-import com.example.mypkg.outbound.domain.resources.BorrowingRecordCreateResponse;
+import com.example.mypkg.outbound.response.BorrowingRecordCreateResponse;
 import com.example.mypkg.outbound.response.BorrowingRecordUpdateResponse;
 import com.example.mypkg.service.BorrowingRecordManage;
 

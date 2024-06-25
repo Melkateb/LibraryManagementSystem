@@ -5,6 +5,8 @@ package com.example.mypkg.inbound.resources;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.Id;
+
 /**
  * @author MRKAT
  *
@@ -12,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class PatronRemoveResource {
 
+	@Id
 	private String id;
 
 	/**

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.Id;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class BookCreateAPIResponse {
 
+	@Id
 	@NotNull
 	@JsonProperty("id")
 	private String id;

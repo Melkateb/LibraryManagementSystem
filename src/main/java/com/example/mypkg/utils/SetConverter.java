@@ -5,10 +5,10 @@ package com.example.mypkg.utils;
 
 import java.util.Set;
 
+import javax.persistence.AttributeConverter;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import jakarta.persistence.AttributeConverter;
 
 /**
  * @author MRKAT

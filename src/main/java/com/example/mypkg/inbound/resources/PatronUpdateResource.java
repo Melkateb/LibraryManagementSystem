@@ -3,8 +3,11 @@
  */
 package com.example.mypkg.inbound.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.Id;
 import com.example.mypkg.inbound.domain.resources.Patron;
 
 /**
@@ -14,8 +17,10 @@ import com.example.mypkg.inbound.domain.resources.Patron;
 @Validated
 public class PatronUpdateResource {
 
+	@Id
 	private String id;
 
+	@Valid
 	private Patron patron;
 
 	/**

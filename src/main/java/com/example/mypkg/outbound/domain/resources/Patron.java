@@ -5,11 +5,11 @@ package com.example.mypkg.outbound.domain.resources;
 
 import java.util.Date;
 
+import javax.persistence.Id;
+
 import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.persistence.Id;
 
 /**
  * @author MRKAT

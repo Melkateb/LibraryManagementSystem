@@ -59,37 +59,37 @@ import com.example.mypkg.service.PatronsManage;
 public class PatronsManageController {
 
 	@Autowired
-	PatronsManage patronsManage;
+	private PatronsManage patronsManage;
 
 	@Autowired
-	PatronsListInquiryCommandBuilder patronsListInquiryCommandBuilder;
+	private PatronsListInquiryCommandBuilder patronsListInquiryCommandBuilder;
 
 	@Autowired
-	PatronsListInquiryAPIResponseBuilder patronsListInquiryAPIResponseBuilder;
+	private PatronsListInquiryAPIResponseBuilder patronsListInquiryAPIResponseBuilder;
 
 	@Autowired
-	PatronInquiryCommandBuilder patronInquiryCommandBuilder;
+	private PatronInquiryCommandBuilder patronInquiryCommandBuilder;
 
 	@Autowired
-	PatronInquiryAPIResponseBuilder patronInquiryAPIResponseBuilder;
+	private PatronInquiryAPIResponseBuilder patronInquiryAPIResponseBuilder;
 
 	@Autowired
-	PatronCreateCommandBuilder patronCreateCommandBuilder;
+	private PatronCreateCommandBuilder patronCreateCommandBuilder;
 
 	@Autowired
-	PatronCreateAPIResponseBuilder patronCreateAPIResponseBuilder;
+	private PatronCreateAPIResponseBuilder patronCreateAPIResponseBuilder;
 
 	@Autowired
-	PatronUpdateCommandBuilder patronUpdateCommandBuilder;
+	private PatronUpdateCommandBuilder patronUpdateCommandBuilder;
 
 	@Autowired
-	PatronUpdateAPIResponseBuilder patronUpdateAPIResponseBuilder;
+	private PatronUpdateAPIResponseBuilder patronUpdateAPIResponseBuilder;
 
 	@Autowired
-	PatronRemoveCommandBuilder patronRemoveCommandBuilder;
+	private PatronRemoveCommandBuilder patronRemoveCommandBuilder;
 
 	@Autowired
-	PatronRemoveAPIResponseBuilder patronRemoveAPIResponseBuilder;
+	private PatronRemoveAPIResponseBuilder patronRemoveAPIResponseBuilder;
 
 	@GetMapping("")
 	private ResponseMessage<PatronsListInquiryAPIResponse> getAllPatrons() throws ApplicationException {

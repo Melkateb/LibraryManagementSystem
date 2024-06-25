@@ -34,7 +34,7 @@ public class BookAlreadyExistsTest extends GenericAPITest<BookCreateResource, Bo
 	private String AUTHOR = "Author 1";
 	private String TITLE = "Title 1";
 	private Date PUBLICATION_YEAR = new Date();
-	private String ISBN = "1112221";
+	private String ISBN = "0-596-52068-9";
 
 	@InjectMocks
 	private BooksManageController booksManageController;

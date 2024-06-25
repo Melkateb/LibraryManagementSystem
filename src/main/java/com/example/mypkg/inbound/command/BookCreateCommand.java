@@ -3,20 +3,30 @@
  */
 package com.example.mypkg.inbound.command;
 
-import java.sql.Date;
+import java.util.Date;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.example.mypkg.domain.validators.ISBN;
+import com.example.mypkg.domain.validators.Name;
+import com.example.mypkg.domain.validators.Title;
 
 /**
  * @author MRKAT
  *
  */
+@Validated
 public class BookCreateCommand {
 
+	@Title
 	private String title;
 
+	@Name
 	private String author;
 
 	private Date publicationYear;
 
+	@ISBN
 	private String isbn;
 
 	/**

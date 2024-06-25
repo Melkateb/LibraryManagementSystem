@@ -5,9 +5,14 @@ package com.example.mypkg.inbound.command;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
+
+import com.example.mypkg.domain.validators.Address;
+import com.example.mypkg.domain.validators.Mobile;
+import com.example.mypkg.domain.validators.Name;
 
 /**
  * @author MRKAT
@@ -16,15 +21,19 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class PatronCreateCommand {
 
+	@Name
 	@NotNull
 	private String name;
 
+	@Mobile
 	@NotNull
 	private String mobile;
 
+	@Address
 	@NotNull
 	private String address;
 
+	@Email
 	@NotNull
 	private String email;
 

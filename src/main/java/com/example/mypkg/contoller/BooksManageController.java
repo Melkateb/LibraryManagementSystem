@@ -59,37 +59,37 @@ import com.example.mypkg.service.BooksManage;
 public class BooksManageController {
 
 	@Autowired
-	BooksManage booksManage;
+	private BooksManage booksManage;
 
 	@Autowired
-	BooksListInquiryCommandBuilder booksListInquiryCommandBuilder;
+	private BooksListInquiryCommandBuilder booksListInquiryCommandBuilder;
 
 	@Autowired
-	BooksListInquiryAPIResponseBuilder booksListInquiryAPIResponseBuilder;
+	private BooksListInquiryAPIResponseBuilder booksListInquiryAPIResponseBuilder;
 
 	@Autowired
-	BookCreateCommandBuilder bookCreateCommandBuilder;
+	private BookCreateCommandBuilder bookCreateCommandBuilder;
 
 	@Autowired
-	BookCreateAPIResponseBuilder bookCreateAPIResponseBuilder;
+	private BookCreateAPIResponseBuilder bookCreateAPIResponseBuilder;
 
 	@Autowired
-	BookUpdateCommandBuilder bookUpdateCommandBuilder;
+	private BookUpdateCommandBuilder bookUpdateCommandBuilder;
 
 	@Autowired
-	BookUpdateAPIResponseBuilder bookUpdateAPIResponseBuilder;
+	private BookUpdateAPIResponseBuilder bookUpdateAPIResponseBuilder;
 
 	@Autowired
-	BookInquiryCommandBuilder bookInquiryCommandBuilder;
+	private BookInquiryCommandBuilder bookInquiryCommandBuilder;
 
 	@Autowired
-	BookInquiryAPIResponseBuilder bookInquiryAPIResponseBuilder;
+	private BookInquiryAPIResponseBuilder bookInquiryAPIResponseBuilder;
 
 	@Autowired
-	BookRemoveCommandBuilder bookRemoveCommandBuilder;
+	private BookRemoveCommandBuilder bookRemoveCommandBuilder;
 
 	@Autowired
-	BookRemoveAPIResponseBuilder bookRemoveAPIResponseBuilder;
+	private BookRemoveAPIResponseBuilder bookRemoveAPIResponseBuilder;
 
 	@GetMapping("")
 	private ResponseMessage<BooksListInquiryAPIResponse> getAllBook() throws ApplicationException {

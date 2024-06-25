@@ -3,13 +3,15 @@
  */
 package com.example.mypkg.outbound.domain.resources;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.ISBN;
+import com.example.mypkg.domain.validators.Id;
+import com.example.mypkg.domain.validators.Name;
+import com.example.mypkg.domain.validators.Title;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.persistence.Id;
 
 /**
  * @author MRKAT
@@ -22,15 +24,18 @@ public class Book {
 	@JsonProperty("id")
 	private String id;
 
+	@Title
 	@JsonProperty("title")
 	private String title;
 
+	@Name
 	@JsonProperty("author")
 	private String author;
 
 	@JsonProperty("publicationYear")
 	private Date publicationYear;
 
+	@ISBN
 	@JsonProperty("isbn")
 	private String isbn;
 

@@ -3,7 +3,7 @@
  */
 package com.example.mypkg.utils;
 
-import jakarta.persistence.AttributeConverter;
+import javax.persistence.AttributeConverter;
 
 /**
  * @author MRKAT

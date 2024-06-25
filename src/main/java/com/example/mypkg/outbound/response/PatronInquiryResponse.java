@@ -5,6 +5,8 @@ package com.example.mypkg.outbound.response;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.validation.annotation.Validated;
 
 import com.example.mypkg.domain.model.Book;
@@ -17,6 +19,7 @@ import com.example.mypkg.domain.model.Patron;
 @Validated
 public class PatronInquiryResponse {
 
+	@Valid
 	private Patron patron;
 
 	private List<Book> borrowedBooks;

@@ -35,7 +35,7 @@ public class BookNotFoundTest
 	private String NEW_AUTHOR = "New author";
 	private String NEW_TITLE = "New title";
 	private Date PUBLICATION_YEAR = new Date();
-	private String NEW_ISBN = "111222";
+	private String NEW_ISBN = "0-596-52068-9";
 
 	@InjectMocks
 	private BooksManageController booksManageController;

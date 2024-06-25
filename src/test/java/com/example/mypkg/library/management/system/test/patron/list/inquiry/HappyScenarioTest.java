@@ -36,8 +36,8 @@ public class HappyScenarioTest extends GenericAPITest<PatronsListInquiryResource
 	private String SECOND_PATRON_ID;
 	private String FIRST_NAME = "NAME 1";
 	private String SECOND_NAME = "NAME 2";
-	private String FIRST_MOBILE = "+971125896745";
-	private String SECOND_MOBILE = "+971125896743";
+	private String FIRST_MOBILE = "+97141234567";
+	private String SECOND_MOBILE = "00971585045336";
 	private String FIRST_ADDRESS = "222 Oak Lane, Springfield, State, Zip Code";
 	private String SECOND_ADDRESS = "999 Elm Street, Cityville, State, Zip Code";
 	private String FIRST_EMAIL = "test1@gmail.com";

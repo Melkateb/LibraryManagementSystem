@@ -3,6 +3,9 @@
  */
 package com.example.mypkg.inbound.command;
 
+import javax.validation.Valid;
+
+import com.example.mypkg.domain.validators.Id;
 import com.example.mypkg.inbound.domain.resources.Book;
 
 /**
@@ -11,8 +14,10 @@ import com.example.mypkg.inbound.domain.resources.Book;
  */
 public class BookUpdateCommand {
 
+	@Id
 	private String id;
 
+	@Valid
 	private Book book;
 
 	/**

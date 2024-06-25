@@ -3,10 +3,13 @@
  */
 package com.example.mypkg.inbound.domain.resources;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.ISBN;
+import com.example.mypkg.domain.validators.Name;
+import com.example.mypkg.domain.validators.Title;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -16,17 +19,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class Book {
 
+	@Title
 	@JsonProperty("title")
 	private String title;
 
+	@Name
 	@JsonProperty("author")
 	private String author;
 
 	@JsonProperty("publicationYear")
 	private Date publicationYear;
 
+	@ISBN
 	@JsonProperty("isbn")
 	private String isbn;
+
+	@JsonProperty("isBorrowed")
+	private Boolean isBorrowed;
 
 	/**
 	 * @return the title
@@ -85,17 +94,33 @@ public class Book {
 	}
 
 	/**
+	 * @return the isBorrowed
+	 */
+	public Boolean getIsBorrowed() {
+		return isBorrowed;
+	}
+
+	/**
+	 * @param isBorrowed the isBorrowed to set
+	 */
+	public void setIsBorrowed(Boolean isBorrowed) {
+		this.isBorrowed = isBorrowed;
+	}
+
+	/**
 	 * @param title
 	 * @param author
 	 * @param publicationYear
 	 * @param isbn
+	 * @param isBorrowed
 	 */
-	public Book(String title, String author, Date publicationYear, String isbn) {
+	public Book(String title, String author, Date publicationYear, String isbn, Boolean isBorrowed) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.publicationYear = publicationYear;
 		this.isbn = isbn;
+		this.isBorrowed = isBorrowed;
 	}
 
 	/**
@@ -107,6 +132,7 @@ public class Book {
 		this.author = book.getAuthor();
 		this.publicationYear = book.getPublicationYear();
 		this.isbn = book.getIsbn();
+		this.isBorrowed = book.getIsBorrowed();
 	}
 
 	/**

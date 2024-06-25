@@ -5,6 +5,8 @@ package com.example.mypkg.inbound.resources;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.Id;
+
 /**
  * @author MRKAT
  *
@@ -12,8 +14,10 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class BorrowingRecordUpdateResource {
 
+	@Id
 	private String bookId;
 
+	@Id
 	private String patronId;
 
 	/**

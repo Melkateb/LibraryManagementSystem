@@ -41,8 +41,8 @@ public class HappyScenarioTest extends GenericAPITest<BooksListInquiryResource, 
 	private String FIRST_TITLE = "Title 1";
 	private String SECOND_TITLE = "Title 2";
 	private Date PUBLICATION_YEAR = new Date();
-	private String FIRST_ISBN = "1112221";
-	private String SECOND_ISBN = "1112222";
+	private String FIRST_ISBN = "0-596-52068-9";
+	private String SECOND_ISBN = "0-596-52069-9";
 
 	@InjectMocks
 	private BooksManageController booksManageController;

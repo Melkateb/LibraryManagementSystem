@@ -3,6 +3,8 @@
  */
 package com.example.mypkg.outbound.response;
 
+import javax.validation.Valid;
+
 import org.springframework.validation.annotation.Validated;
 
 import com.example.mypkg.domain.model.Book;
@@ -14,6 +16,7 @@ import com.example.mypkg.domain.model.Book;
 @Validated
 public class BookInquiryResponse {
 
+	@Valid
 	private Book book;
 
 	/**

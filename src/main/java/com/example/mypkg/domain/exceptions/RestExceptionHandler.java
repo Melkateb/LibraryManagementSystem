@@ -7,15 +7,16 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.lang.Nullable;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -32,8 +33,6 @@ import com.example.mypkg.model.adapters.ResponseStatus;
 import com.example.mypkg.model.adapters.SubError;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import jakarta.annotation.Nullable;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -48,7 +47,7 @@ import lombok.extern.log4j.Log4j2;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@Override
-	protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatusCode status,
+	protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status,
 			WebRequest request) {
 		MethodArgumentNotValidException methodArgumentNotValidException = new MethodArgumentNotValidException(null,
 				ex.getBindingResult());
@@ -58,13 +57,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	@Override
 
 	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers,
-			HttpStatusCode statusCode, WebRequest request) {
+			HttpStatus statusCode, WebRequest request) {
 		return buildResponseEntity(getResponseMessagForGeneralException(ErrorsEnum.GENERAL_ERROR));
 	}
 
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
-			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		try {
 			return buildResponseEntity(getResponseMessageFromMessageNotReadableException(ex));
 		} catch (Exception e) {
@@ -73,16 +72,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@Override
-
 	protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex,
-			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		return buildResponseEntity(getResponseMessagForGeneralException(ErrorsEnum.MISSING_PARAM));
 	}
 
 	@Override
-
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		return buildResponseEntity(getResponseMessageFromMethodNonValidtExpection(ex));
 	}
 

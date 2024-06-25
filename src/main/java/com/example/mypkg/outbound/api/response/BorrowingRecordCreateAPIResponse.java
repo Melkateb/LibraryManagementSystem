@@ -3,11 +3,11 @@
  */
 package com.example.mypkg.outbound.api.response;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.validation.constraints.NotBlank;
 
 /**
  * @author MRKAT

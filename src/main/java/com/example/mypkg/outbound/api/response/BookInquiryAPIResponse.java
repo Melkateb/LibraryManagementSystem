@@ -3,6 +3,8 @@
  */
 package com.example.mypkg.outbound.api.response;
 
+import javax.validation.Valid;
+
 import org.springframework.validation.annotation.Validated;
 
 import com.example.mypkg.outbound.domain.resources.Book;
@@ -15,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class BookInquiryAPIResponse {
 
+	@Valid
 	@JsonProperty("book")
 	private Book book;
 

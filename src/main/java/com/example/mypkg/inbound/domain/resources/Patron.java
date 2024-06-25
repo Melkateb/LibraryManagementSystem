@@ -5,8 +5,13 @@ package com.example.mypkg.inbound.domain.resources;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.Address;
+import com.example.mypkg.domain.validators.Mobile;
+import com.example.mypkg.domain.validators.Name;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -16,15 +21,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class Patron {
 
+	@Name
 	@JsonProperty("name")
 	private String name;
 
+	@Mobile
 	@JsonProperty("mobile")
 	private String mobile;
 
+	@Address
 	@JsonProperty("address")
 	private String address;
 
+	@Email
 	@JsonProperty("email")
 	private String email;
 

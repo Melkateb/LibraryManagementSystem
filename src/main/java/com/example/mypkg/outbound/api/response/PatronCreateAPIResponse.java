@@ -5,6 +5,7 @@ package com.example.mypkg.outbound.api.response;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.Id;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class PatronCreateAPIResponse {
 
+	@Id
 	@JsonProperty("id")
 	private String id;
 

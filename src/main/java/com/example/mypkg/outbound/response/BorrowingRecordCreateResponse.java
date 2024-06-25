@@ -3,9 +3,9 @@
  */
 package com.example.mypkg.outbound.response;
 
-import org.springframework.validation.annotation.Validated;
+import javax.validation.constraints.NotBlank;
 
-import jakarta.validation.constraints.NotBlank;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * @author MRKAT

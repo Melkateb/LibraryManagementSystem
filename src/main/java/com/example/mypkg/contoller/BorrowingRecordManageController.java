@@ -37,19 +37,19 @@ import com.example.mypkg.service.BorrowingRecordManage;
 public class BorrowingRecordManageController {
 
 	@Autowired
-	BorrowingRecordManage borrowingRecordManage;
+	private BorrowingRecordManage borrowingRecordManage;
 
 	@Autowired
-	BorrowingRecordCreateCommandBuilder borrowingRecordCreateCommandBuilder;
+	private BorrowingRecordCreateCommandBuilder borrowingRecordCreateCommandBuilder;
 
 	@Autowired
-	BorrowingRecordCreateAPIResponseBuilder borrowingRecordCreateAPIResponseBuilder;
+	private BorrowingRecordCreateAPIResponseBuilder borrowingRecordCreateAPIResponseBuilder;
 
 	@Autowired
-	BorrowingRecordUpdateCommandBuilder borrowingRecordUpdateCommandBuilder;
+	private BorrowingRecordUpdateCommandBuilder borrowingRecordUpdateCommandBuilder;
 
 	@Autowired
-	BorrowingRecordUpdateAPIResponseBuilder borrowingRecordUpdateAPIResponseBuilder;
+	private BorrowingRecordUpdateAPIResponseBuilder borrowingRecordUpdateAPIResponseBuilder;
 
 	@PostMapping("/borrow/{bookId}/patron/{patronId}")
 	private ResponseMessage<BorrowingRecordCreateAPIResponse> createBorrowingRecord(

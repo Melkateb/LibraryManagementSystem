@@ -5,6 +5,8 @@ package com.example.mypkg.outbound.api.response;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.validation.annotation.Validated;
 
 import com.example.mypkg.outbound.domain.resources.Book;
@@ -18,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class PatronInquiryAPIResponse {
 
+	@Valid
 	@JsonProperty("patron")
 	private Patron patron;
 

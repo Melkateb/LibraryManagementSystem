@@ -5,10 +5,14 @@ package com.example.mypkg.inbound.resources;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.Address;
+import com.example.mypkg.domain.validators.Mobile;
+import com.example.mypkg.domain.validators.Name;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -18,18 +22,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class PatronCreateResource {
 
+	@Name
 	@NotNull
 	@JsonProperty("name")
 	private String name;
 
+	@Mobile
 	@NotNull
 	@JsonProperty("mobile")
 	private String mobile;
 
+	@Address
 	@NotNull
 	@JsonProperty("address")
 	private String address;
 
+	@Email
 	@NotNull
 	@JsonProperty("email")
 	private String email;

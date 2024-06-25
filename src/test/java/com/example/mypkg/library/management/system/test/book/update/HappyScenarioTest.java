@@ -39,8 +39,8 @@ public class HappyScenarioTest
 	private String TITLE = "Title";
 	private String NEW_TITLE = "New title";
 	private Date PUBLICATION_YEAR = new Date();
-	private String ISBN = "1112221";
-	private String NEW_ISBN = "111222";
+	private String ISBN = "0-596-52068-9";
+	private String NEW_ISBN = "0-596-52069-9";
 
 	@InjectMocks
 	private BooksManageController booksManageController;

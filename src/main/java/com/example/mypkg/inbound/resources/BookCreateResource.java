@@ -3,12 +3,15 @@
  */
 package com.example.mypkg.inbound.resources;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.example.mypkg.domain.validators.ISBN;
+import com.example.mypkg.domain.validators.Name;
+import com.example.mypkg.domain.validators.Title;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -18,10 +21,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Validated
 public class BookCreateResource {
 
+	@Title
 	@NotNull
 	@JsonProperty("title")
 	private String title;
 
+	@Name
 	@NotNull
 	@JsonProperty("author")
 	private String author;
@@ -30,6 +35,7 @@ public class BookCreateResource {
 	@JsonProperty("publicationYear")
 	private Date publicationYear;
 
+	@ISBN
 	@NotNull
 	@JsonProperty("isbn")
 	private String isbn;

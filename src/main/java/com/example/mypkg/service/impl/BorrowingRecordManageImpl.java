@@ -23,7 +23,7 @@ import com.example.mypkg.domain.repository.BorrowingRecordRepository;
 import com.example.mypkg.domain.repository.PatronRepository;
 import com.example.mypkg.inbound.command.BorrowingRecordCreateCommand;
 import com.example.mypkg.inbound.command.BorrowingRecordUpdateCommand;
-import com.example.mypkg.outbound.domain.resources.BorrowingRecordCreateResponse;
+import com.example.mypkg.outbound.response.BorrowingRecordCreateResponse;
 import com.example.mypkg.outbound.response.BorrowingRecordUpdateResponse;
 import com.example.mypkg.service.BorrowingRecordManage;
 
@@ -53,13 +53,13 @@ public class BorrowingRecordManageImpl implements BorrowingRecordManage {
 		// Check that book exists
 		Book book = getBook(borrowingRecordCreateCommand.getBookId());
 
+		// Check that book record doesn't exist
+		validateBorrowingRecord(borrowingRecordCreateCommand.getBookId(), borrowingRecordCreateCommand.getPatronId());
+
 		// Check that not borrowed by another patron
 		if (book.getIsBorrowed()) {
 			throw new BookAlreadyBookedException();
 		}
-
-		// Check that book record doesn't exist
-		validateBorrowingRecord(borrowingRecordCreateCommand.getBookId(), borrowingRecordCreateCommand.getPatronId());
 
 		// Create borrowing record
 		BorrowingRecord borrowingRecord = createBorrowingrecord(borrowingRecordCreateCommand.getBookId(),
@@ -74,7 +74,7 @@ public class BorrowingRecordManageImpl implements BorrowingRecordManage {
 		patron.addToBorrowedBooks(book.getId());
 		patronRepository.save(patron);
 
-		return new BorrowingRecordCreateResponse();
+		return new BorrowingRecordCreateResponse(borrowingRecord.getId());
 	}
 
 	@Override
